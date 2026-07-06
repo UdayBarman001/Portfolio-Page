@@ -1,0 +1,88 @@
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.skill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-group-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.skill-chip {
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--bg-panel);
+  border: 1px solid var(--line-hairline);
+  padding: 5px 11px;
+  border-radius: 20px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.skill-chip:hover {
+  border-color: var(--accent-red);
+  color: var(--text-primary);
+}
+
+.edu-achieve-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line-hairline);
+}
+
+.edu-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.edu-entry strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.edu-meta {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.achieve-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.achieve-list li {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding-left: 16px;
+  border-left: 2px solid var(--line-hairline);
+}
+
+@media (max-width: 640px) {
+  .skills-grid,
+  .edu-achieve-grid {
+    grid-template-columns: 1fr;
+  }
+}

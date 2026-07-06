@@ -1,0 +1,170 @@
+/* ============================================
+   DESIGN TOKENS
+   Concept: Netflix-inspired dark browsing experience —
+   deep black background, red accent, bold poster typography,
+   horizontal content rows with hover-scale cards.
+   ============================================ */
+
+:root {
+  /* Color */
+  --bg-void: #000000;          /* deepest background */
+  --bg-base: #141414;          /* primary background */
+  --bg-panel: #1a1a1a;         /* card / panel surface */
+  --bg-panel-hover: #2a2a2a;
+  --line-grid: rgba(255, 255, 255, 0.04);
+  --line-hairline: rgba(255, 255, 255, 0.08);
+  --accent-red: #e50914;       /* primary accent */
+  --accent-red-dim: rgba(229, 9, 20, 0.15);
+  --accent-red-bright: #f6121d;
+  --accent-amber: #f5c518;     /* rating-star yellow, used sparingly */
+  --accent-amber-dim: rgba(245, 197, 24, 0.15);
+  --accent-green: #46d369;     /* "match %" green, used sparingly */
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #737373;
+
+  /* Type */
+  --font-display: 'Archivo Black', 'Inter', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Layout */
+  --rail-width: 0px;
+  --content-max: 1100px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Plain black background with a subtle top vignette, Netflix-style */
+.app-shell {
+  position: relative;
+  background: var(--bg-base);
+  min-height: 100vh;
+}
+
+.app-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(229, 9, 20, 0.10), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--accent-red-dim);
+  color: var(--text-primary);
+}
+
+/* Focus visibility for keyboard nav */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-red);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reveal-on-scroll utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Shared section wrapper */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 20px;
+  }
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: clamp(24px, 3.4vw, 34px);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  text-transform: none;
+}
+
+.section-sub {
+  color: var(--text-secondary);
+  font-size: 16px;
+  max-width: 60ch;
+  margin-bottom: 40px;
+}
